@@ -1,0 +1,43 @@
+# fly.toml file generated for atcms-cockroach on 2022-02-18T17:42:09-07:00
+
+app = "atcms-cockroach"
+
+kill_signal = "SIGTERM"
+kill_timeout = 90
+services = []
+
+[build]
+  image = "ghcr.io/atcms-dev/atcms-cockroach:latest"
+
+[checks]
+  [checks.crdb]
+    grace_period = "60s"
+    interval = "15s"
+    method = "get"
+    path = "/health"
+    port = 8080
+    protocol = "https"
+    timeout = "10s"
+    tls_skip_verify = true
+    type = "http"
+
+[deploy]
+  strategy = "rolling"
+
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
+  private_network = true
+
+# This block is commented out til we can skip tls verification for the metrics
+# endpoint. Issue was raised on the community form here:
+# https://community.fly.io/t/is-it-possible-to-tls-skip-verify-the-metrics-endpoint/4128
+#[metrics]
+#  path = "/_status/vars"
+#  port = 8080
+#  protocol = "https"
+#  tls_skip_verify = true
+
+[[mounts]]
+  destination = "/cockroach/cockroach-data"
+  source = "crdb_data"
