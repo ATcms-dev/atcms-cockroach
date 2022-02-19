@@ -2,6 +2,7 @@ FROM cockroachdb/cockroach:v21.2.5
 
 RUN microdnf install bind-utils
 
-ADD start.sh /cockroach/
+ADD start-insecure-local.sh /cockroach/
+ADD start-secure.sh /cockroach/
 
-ENTRYPOINT ["/cockroach/start.sh"]
+ENTRYPOINT ["/cockroach/start-secure.sh"]
