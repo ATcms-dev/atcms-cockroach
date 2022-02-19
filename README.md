@@ -2,18 +2,18 @@
 
 This repository contains the docker files for getting cockroach up and running in Fly.io, used for ATcms.
 
-Code was shamelessly stollen from the fly-apps repository and an unmerged PR:
+Code was shamelessly stolen from the fly-apps repository and an unmerged PR:
 
 - <https://github.com/fly-apps/cockroachdb>
 - <https://github.com/fly-apps/cockroachdb/pull/1>
 
 ## Updating
 
-This repository has built in GitHub actions. This combined with Fly's awesome rolling deployments you should be safe for any updates. Simply make changes, make a PR, then merge into `main`. This will trigger a GitHub Action that will build the docker image, push it to the image repository, and then trigger a Fly.io deployment.
+This repository has built in GitHub actions for deployments. This combined with Fly's awesome rolling deployments you should be safe for any updates. Simply make changes, make a PR, then merge into `main`. This will trigger a GitHub Action that (once approved) will build the docker image, push it to the image repository, and trigger a Fly.io deployment.
 
 ## GitHub Actions
 
-This docker image is used in production _and in GitHub Actions_ for testing. Due to the way GitHub Actions works, it's not immediately obvious how to get this to work in an insecure configuration, so here is a short snippet of how that works:
+This docker image is used in production _and in GitHub actions_ for testing. Due to the way GitHub actions works, it's not immediately obvious how to get this to work in an insecure configuration, so here is a short snippet of how that works:
 
 ```yaml
 jobs:
