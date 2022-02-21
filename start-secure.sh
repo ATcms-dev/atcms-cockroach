@@ -17,7 +17,7 @@ echo "Starting cockroach $FLY_APP_NAME cluster..."
 exec /cockroach/cockroach start \
   --logtostderr \
   --certs-dir=/cockroach/cockroach-certs \
-  --locality=fly_region=$FLY_REGION \
+  --locality=region=$FLY_REGION \
   --cluster-name=$FLY_APP_NAME \
   --join=$FLY_APP_NAME.internal \
   --advertise-addr=$(hostname -s).vm.$FLY_APP_NAME.internal \
